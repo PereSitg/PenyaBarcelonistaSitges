@@ -4,50 +4,51 @@ const products = [
         name: "Camiseta Oficial 1a Equipació",
         price: 45.00,
         type: "camiseta",
-        image: "https://images.unsplash.com/photo-1540910419892-f0c059497e74?auto=format&fit=crop&q=80&w=500"
+        image: "https://placehold.co/600x400/004D98/ffffff?text=Camiseta+1a+Equipacio"
     },
     {
         id: 2,
         name: "Camiseta Entrenament Sitges",
         price: 30.00,
         type: "camiseta",
-        image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&q=80&w=500"
+        image: "https://placehold.co/600x400/A50044/ffffff?text=Camiseta+Entrenament"
     },
     {
         id: 3,
         name: "Polo Penya Blaugrana",
         price: 35.00,
         type: "camiseta",
-        image: "https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&q=80&w=500"
+        image: "https://placehold.co/600x400/004D98/ffffff?text=Polo+Penya"
     },
     {
         id: 4,
         name: "Camiseta Retro 1980",
         price: 50.00,
         type: "camiseta",
-        image: "https://images.unsplash.com/photo-1516257984411-1bb161743d52?auto=format&fit=crop&q=80&w=500"
+        image: "https://placehold.co/600x400/A50044/ffffff?text=Camiseta+Retro"
     },
     {
         id: 5,
         name: "Gorra Clàssica PB Sitges",
         price: 15.00,
         type: "gorra",
-        image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&q=80&w=500"
+        image: "https://placehold.co/600x400/004D98/ffffff?text=Gorra+Classica"
     },
     {
         id: 6,
         name: "Gorra Plana 'SITGES'",
         price: 18.00,
         type: "gorra",
-        image: "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?auto=format&fit=crop&q=80&w=500"
+        image: "https://placehold.co/600x400/A50044/ffffff?text=Gorra+Plana"
     },
     {
         id: 7,
         name: "Visera Estiu Blaugrana",
         price: 12.00,
         type: "gorra",
-        image: "https://images.unsplash.com/photo-1576850058072-55d9443899f0?auto=format&fit=crop&q=80&w=500"
+        image: "https://placehold.co/600x400/004D98/ffffff?text=Visera+Estiu"
     }
+
 ];
 
 let cart = [];
