@@ -1,28 +1,28 @@
 const products = [
     {
         id: 1,
-        name: "Camiseta Oficial Penya Sitges (Grana)",
+        name: "Camiseta Oficial Penya Sitges (Blava)",
         price: 15.00,
         type: "camiseta",
         image: "camiseta-1.png"
     },
     {
         id: 2,
-        name: "Camiseta Oficial Penya Sitges (Blava)",
+        name: "Camiseta Oficial Penya Sitges (Grana)",
         price: 15.00,
         type: "camiseta",
         image: "camiseta-2.png"
     },
     {
         id: 3,
-        name: "Polo Oficial Penya Sitges (Grana)",
+        name: "Polo Oficial Penya Sitges (Blava)",
         price: 20.00,
         type: "camiseta",
         image: "polo-1.png"
     },
     {
         id: 4,
-        name: "Polo Oficial Penya Sitges (Blava)",
+        name: "Polo Oficial Penya Sitges (Grana)",
         price: 20.00,
         type: "camiseta",
         image: "polo-2.png"
