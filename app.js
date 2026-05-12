@@ -1,17 +1,17 @@
 const products = [
     {
         id: 1,
-        name: "Camiseta Oficial 1a Equipació",
-        price: 45.00,
+        name: "Camiseta Oficial Penya Sitges (Grana)",
+        price: 15.00,
         type: "camiseta",
-        image: "https://placehold.co/600x400/004D98/ffffff?text=Camiseta+1a+Equipacio"
+        image: "camiseta-1.png"
     },
     {
         id: 2,
-        name: "Camiseta Entrenament Sitges",
-        price: 30.00,
+        name: "Camiseta Oficial Penya Sitges (Blava)",
+        price: 15.00,
         type: "camiseta",
-        image: "https://placehold.co/600x400/A50044/ffffff?text=Camiseta+Entrenament"
+        image: "camiseta-2.png"
     },
     {
         id: 3,
