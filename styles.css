@@ -1,0 +1,75 @@
+/* Custom Styles for PB Sitges */
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #004D98;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #A50044;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.product-card {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Glassmorphism Refinement */
+.glass {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+}
+
+/* Button Hover Effects */
+button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gradient-fcb:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(165, 0, 68, 0.4);
+}
+
+/* Cart Item Entry Animation */
+#cart-items div {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    #cart-sidebar {
+        position: static;
+        margin-top: 2rem;
+    }
+}
+
+/* Form focus effects */
+input:focus, select:focus {
+    box-shadow: 0 0 0 4px rgba(0, 77, 152, 0.1);
+}
+
+/* Product Grid Layout Fix */
+#camisetes-grid, #gorres-grid {
+    display: grid;
+    gap: 1.5rem;
+}
