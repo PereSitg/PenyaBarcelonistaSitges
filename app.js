@@ -15,17 +15,17 @@ const products = [
     },
     {
         id: 3,
-        name: "Polo Penya Blaugrana",
-        price: 35.00,
+        name: "Polo Oficial Penya Sitges (Grana)",
+        price: 20.00,
         type: "camiseta",
-        image: "https://placehold.co/600x400/004D98/ffffff?text=Polo+Penya"
+        image: "polo-1.png"
     },
     {
         id: 4,
-        name: "Camiseta Retro 1980",
-        price: 50.00,
+        name: "Polo Oficial Penya Sitges (Blava)",
+        price: 20.00,
         type: "camiseta",
-        image: "https://placehold.co/600x400/A50044/ffffff?text=Camiseta+Retro"
+        image: "polo-2.png"
     },
     {
         id: 5,
