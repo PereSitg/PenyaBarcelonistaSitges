@@ -266,7 +266,7 @@ document.getElementById('close-modal').onclick = function() {
     modal.children[0].classList.add('scale-90');
     setTimeout(() => {
         modal.classList.add('hidden');
-        window.location.reload(); // Reset the page completely
+        window.location.href = window.location.pathname; // Reset page without hash
     }, 300);
 };
 
