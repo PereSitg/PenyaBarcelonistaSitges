@@ -214,49 +214,48 @@ document.getElementById('order-form').onsubmit = function(e) {
         Enviant...
     `;
 
-    // Send to Formspree using FormData (more compatible)
-    const formData = new FormData(e.target);
-    // Add extra fields that are calculated
-    formData.append('Comanda', cartDetails);
-    formData.append('Total', total);
+    // Inject cart data into hidden fields for the native submission
+    let cartInput = document.getElementById('hidden-comanda');
+    if (!cartInput) {
+        cartInput = document.createElement('input');
+        cartInput.type = 'hidden';
+        cartInput.id = 'hidden-comanda';
+        cartInput.name = 'Comanda';
+        e.target.appendChild(cartInput);
+    }
+    cartInput.value = cartDetails;
+    
+    let totalInput = document.getElementById('hidden-total');
+    if (!totalInput) {
+        totalInput = document.createElement('input');
+        totalInput.type = 'hidden';
+        totalInput.id = 'hidden-total';
+        totalInput.name = 'Total';
+        e.target.appendChild(totalInput);
+    }
+    totalInput.value = total;
 
-    fetch(e.target.action, {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'Accept': 'application/json'
-        }
-    })
-    .then(response => {
-        if (response.ok) {
-            // Show Success Modal
-            const modal = document.getElementById('success-modal');
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modal.children[0].classList.remove('scale-90');
-            }, 10);
+    // Show Success Modal after a short delay (simulation of submission)
+    setTimeout(() => {
+        const modal = document.getElementById('success-modal');
+        modal.classList.remove('hidden');
+        setTimeout(() => {
+            modal.classList.remove('opacity-0');
+            modal.children[0].classList.remove('scale-90');
+        }, 10);
 
-            // Reset Form and Cart
-            cart = [];
-            updateCartUI();
-            e.target.reset();
-        } else {
-            // If server error, fallback to native submit
-            e.target.submit();
-        }
-    })
-    .catch(error => {
-        console.error('AJAX Error, falling back to native submit:', error);
-        // Fallback to native form submission if fetch fails (CORS, network, etc)
-        e.target.submit();
-    })
-    .finally(() => {
-        // We don't disable loading state here if we are submitting natively
-        // as the page will redirect.
-    });
+        // Reset Form and Cart state locally
+        cart = [];
+        updateCartUI();
+        e.target.reset();
+        
+        // Restore button
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+    }, 1500);
 
-    console.log('Processant comanda...');
+    console.log('Processant comanda a través de iframe...');
+    // The form will now submit naturally to the hidden iframe thanks to the 'target' attribute in HTML
 };
 
 // Modal Close
