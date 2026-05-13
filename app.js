@@ -197,35 +197,63 @@ document.getElementById('order-form').onsubmit = function(e) {
         alert('La cistella està buida!');
         return;
     }
-
+    
     const name = document.getElementById('nom').value;
     const cartDetails = cart.map(item => `- ${item.name} (${item.qty} unitats)${item.size ? ', Talla: ' + item.size : ''}`).join('\n');
     const total = document.getElementById('total-price').textContent;
     
-    const subject = 'botiga PBSitges';
-    const body = `Hola, m'agradaria reservar els següents productes:\n\nNom i Cognoms: ${name}\n\nProductes:\n${cartDetails}\n\nTotal: ${total}`;
-    
-    const mailtoLink = `mailto:pbadialorenz@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    
-    // Show Modal First
-    const modal = document.getElementById('success-modal');
-    modal.classList.remove('hidden');
-    setTimeout(() => {
-        modal.classList.remove('opacity-0');
-        modal.children[0].classList.remove('scale-90');
-    }, 10);
+    // Show loading state
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `
+        <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        Enviant...
+    `;
 
-    // Trigger email after a short delay so the modal can animate in
-    setTimeout(() => {
-        window.location.href = mailtoLink;
-    }, 800);
+    // Send to Formspree
+    fetch('https://formspree.io/f/mpqbnjgl', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            nom: name,
+            comanda: cartDetails,
+            total: total
+        })
+    })
+    .then(response => {
+        if (response.ok) {
+            // Show Success Modal
+            const modal = document.getElementById('success-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.children[0].classList.remove('scale-90');
+            }, 10);
 
-    console.log('Comanda reservada:', { name, cart });
+            // Reset Form and Cart
+            cart = [];
+            updateCartUI();
+            e.target.reset();
+        } else {
+            alert('S\'ha produït un error en enviar la reserva. Per favor, contacta directament amb la Penya.');
+        }
+    })
+    .catch(error => {
+        alert('Error de connexió. Revisa la teva connexió a internet.');
+    })
+    .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+    });
 
-    // Reset Form and Cart state locally
-    cart = [];
-    updateCartUI();
-    e.target.reset();
+    console.log('Comanda enviada a Formspree');
 };
 
 // Modal Close
