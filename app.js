@@ -29,7 +29,7 @@ const products = [
     },
     {
         id: 5,
-        name: "Gorra PB Sitges (Negre)",
+        name: "Gorra PB Sitges (Negra)",
         price: 10.00,
         type: "gorra",
         image: "gorra-negra.png"
