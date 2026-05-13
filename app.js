@@ -215,12 +215,12 @@ document.getElementById('order-form').onsubmit = function(e) {
     `;
 
     // Send to Formspree using FormData (more compatible)
-    const formData = new FormData();
-    formData.append('Nom', name);
+    const formData = new FormData(e.target);
+    // Add extra fields that are calculated
     formData.append('Comanda', cartDetails);
     formData.append('Total', total);
 
-    fetch('https://formspree.io/f/mpqbnjgl', {
+    fetch(e.target.action, {
         method: 'POST',
         body: formData,
         headers: {
@@ -242,19 +242,21 @@ document.getElementById('order-form').onsubmit = function(e) {
             updateCartUI();
             e.target.reset();
         } else {
-            alert('S\'ha produït un error en enviar la reserva. Per favor, contacta directament amb la Penya.');
+            // If server error, fallback to native submit
+            e.target.submit();
         }
     })
     .catch(error => {
-        console.error('Error de connexió:', error);
-        alert('S\'ha produït un error de connexió. Per favor, contacta directament amb la Penya o torna-ho a intentar en uns minuts.');
+        console.error('AJAX Error, falling back to native submit:', error);
+        // Fallback to native form submission if fetch fails (CORS, network, etc)
+        e.target.submit();
     })
     .finally(() => {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalBtnText;
+        // We don't disable loading state here if we are submitting natively
+        // as the page will redirect.
     });
 
-    console.log('Comanda enviada a Formspree');
+    console.log('Processant comanda...');
 };
 
 // Modal Close

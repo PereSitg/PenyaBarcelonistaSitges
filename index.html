@@ -102,7 +102,9 @@
             <!-- Formulari de Comanda -->
             <section id="comanda" class="mb-12 bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
                 <h3 class="text-3xl font-bold mb-8 text-fcb-blue">Finalitza la teva comanda</h3>
-                <form id="order-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <form id="order-form" action="https://formspree.io/f/mpqbnjgl" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="hidden" name="_next" value="https://peresitg.github.io/PenyaBarcelonistaSitges/">
+                    <input type="hidden" name="_subject" value="Nova reserva Botiga PB Sitges">
                     <div class="space-y-2">
                         <label class="block text-sm font-semibold text-gray-600">Nom i Cognoms *</label>
                         <input type="text" id="nom" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-fcb-blue focus:ring-2 focus:ring-fcb-blue/20 outline-none transition-all" placeholder="El teu nom complet">
