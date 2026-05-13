@@ -214,18 +214,18 @@ document.getElementById('order-form').onsubmit = function(e) {
         Enviant...
     `;
 
-    // Send to Formspree
+    // Send to Formspree using FormData (more compatible)
+    const formData = new FormData();
+    formData.append('Nom', name);
+    formData.append('Comanda', cartDetails);
+    formData.append('Total', total);
+
     fetch('https://formspree.io/f/mpqbnjgl', {
         method: 'POST',
+        body: formData,
         headers: {
-            'Content-Type': 'application/json',
             'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-            nom: name,
-            comanda: cartDetails,
-            total: total
-        })
+        }
     })
     .then(response => {
         if (response.ok) {
@@ -246,7 +246,8 @@ document.getElementById('order-form').onsubmit = function(e) {
         }
     })
     .catch(error => {
-        alert('Error de connexió. Revisa la teva connexió a internet.');
+        console.error('Error de connexió:', error);
+        alert('S\'ha produït un error de connexió. Per favor, contacta directament amb la Penya o torna-ho a intentar en uns minuts.');
     })
     .finally(() => {
         submitBtn.disabled = false;
