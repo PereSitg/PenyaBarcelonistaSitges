@@ -218,11 +218,11 @@ document.getElementById('order-form').onsubmit = function(e) {
     // Trigger email after a short delay so the modal can animate in
     setTimeout(() => {
         window.location.href = mailtoLink;
-    }, 500);
+    }, 800);
 
     console.log('Comanda reservada:', { name, cart });
 
-    // Reset Form and Cart
+    // Reset Form and Cart state locally
     cart = [];
     updateCartUI();
     e.target.reset();
@@ -235,6 +235,7 @@ document.getElementById('close-modal').onclick = function() {
     modal.children[0].classList.add('scale-90');
     setTimeout(() => {
         modal.classList.add('hidden');
+        window.location.reload(); // Reset the page completely
     }, 300);
 };
 
