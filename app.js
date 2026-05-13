@@ -300,6 +300,11 @@ document.getElementById('close-lightbox').onclick = (e) => {
 
 // Mobile Scroll for sticky sidebar
 window.addEventListener('DOMContentLoaded', () => {
+    // Force scroll to top on load
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
     renderProducts();
 });
 
