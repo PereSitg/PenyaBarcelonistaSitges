@@ -29,24 +29,24 @@ const products = [
     },
     {
         id: 5,
-        name: "Gorra Clàssica PB Sitges",
-        price: 15.00,
+        name: "Gorra PB Sitges (Negre)",
+        price: 10.00,
         type: "gorra",
-        image: "https://placehold.co/600x400/004D98/ffffff?text=Gorra+Classica"
+        image: "gorra-negra.png"
     },
     {
         id: 6,
-        name: "Gorra Plana 'SITGES'",
-        price: 18.00,
+        name: "Gorra PB Sitges (Grana)",
+        price: 10.00,
         type: "gorra",
-        image: "https://placehold.co/600x400/A50044/ffffff?text=Gorra+Plana"
+        image: "gorra-grana.png"
     },
     {
         id: 7,
-        name: "Visera Estiu Blaugrana",
-        price: 12.00,
+        name: "Gorra PB Sitges (Blava)",
+        price: 10.00,
         type: "gorra",
-        image: "https://placehold.co/600x400/004D98/ffffff?text=Visera+Estiu"
+        image: "gorra-blava.png"
     }
 
 ];
@@ -78,7 +78,7 @@ function renderProducts() {
         }
 
         card.innerHTML = `
-            <div class="relative overflow-hidden h-48 bg-gray-100">
+            <div class="relative overflow-hidden h-64 bg-gray-100 cursor-zoom-in" onclick="openLightbox('${product.image}')">
                 <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                 <div class="absolute top-2 right-2 bg-white/90 backdrop-blur px-2 py-1 rounded-lg font-bold text-fcb-grana text-sm">
                     ${product.price.toFixed(2)}€
@@ -229,6 +229,34 @@ document.getElementById('close-modal').onclick = function() {
     setTimeout(() => {
         modal.classList.add('hidden');
     }, 300);
+};
+
+// Lightbox Logic
+window.openLightbox = function(imgSrc) {
+    const modal = document.getElementById('lightbox-modal');
+    const img = document.getElementById('lightbox-img');
+    img.src = imgSrc;
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        img.classList.remove('scale-90');
+    }, 10);
+};
+
+window.closeLightbox = function() {
+    const modal = document.getElementById('lightbox-modal');
+    const img = document.getElementById('lightbox-img');
+    modal.classList.add('opacity-0');
+    img.classList.add('scale-90');
+    setTimeout(() => {
+        modal.classList.add('hidden');
+    }, 300);
+};
+
+document.getElementById('lightbox-modal').onclick = closeLightbox;
+document.getElementById('close-lightbox').onclick = (e) => {
+    e.stopPropagation();
+    closeLightbox();
 };
 
 // Mobile Scroll for sticky sidebar

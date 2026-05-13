@@ -73,3 +73,42 @@ input:focus, select:focus {
     display: grid;
     gap: 1.5rem;
 }
+
+/* Lightbox Zoom Indicator */
+.cursor-zoom-in {
+    position: relative;
+}
+
+.cursor-zoom-in::after {
+    content: '🔍';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(4px);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.cursor-zoom-in:hover::after {
+    opacity: 1;
+}
+
+.cursor-zoom-in img {
+    transition: transform 0.5s ease;
+}
+
+.cursor-zoom-in:hover img {
+    transform: scale(1.05);
+}
+
