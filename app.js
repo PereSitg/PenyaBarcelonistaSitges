@@ -255,7 +255,8 @@ document.getElementById('order-form').onsubmit = function(e) {
     }, 1500);
 
     console.log('Processant comanda a través de iframe...');
-    // The form will now submit naturally to the hidden iframe thanks to the 'target' attribute in HTML
+    // Trigger the actual submission to the hidden iframe
+    e.target.submit();
 };
 
 // Modal Close
