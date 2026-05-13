@@ -207,18 +207,20 @@ document.getElementById('order-form').onsubmit = function(e) {
     
     const mailtoLink = `mailto:pbadialorenz@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     
-    // Open email client
-    window.location.href = mailtoLink;
-
-    console.log('Simulant enviament de comanda...', { name, cart });
-
-    // Show Modal
+    // Show Modal First
     const modal = document.getElementById('success-modal');
     modal.classList.remove('hidden');
     setTimeout(() => {
         modal.classList.remove('opacity-0');
         modal.children[0].classList.remove('scale-90');
     }, 10);
+
+    // Trigger email after a short delay so the modal can animate in
+    setTimeout(() => {
+        window.location.href = mailtoLink;
+    }, 500);
+
+    console.log('Comanda reservada:', { name, cart });
 
     // Reset Form and Cart
     cart = [];
