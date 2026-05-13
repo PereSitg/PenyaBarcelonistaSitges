@@ -92,10 +92,7 @@ function renderProducts() {
                     <input type="number" id="qty-${product.id}" value="1" min="1" class="w-full bg-gray-50 border border-gray-100 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-fcb-blue">
                 </div>
                 <button onclick="addToCart(${product.id})" class="w-full bg-fcb-blue text-white font-bold py-3 rounded-xl hover:bg-fcb-grana transition-colors flex items-center justify-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 100-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3z" />
-                    </svg>
-                    Afegir
+                    Seleccionar
                 </button>
             </div>
         `;
@@ -202,10 +199,18 @@ document.getElementById('order-form').onsubmit = function(e) {
     }
 
     const name = document.getElementById('nom').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('telefon').value;
+    const cartDetails = cart.map(item => `- ${item.name} (${item.qty} unitats)${item.size ? ', Talla: ' + item.size : ''}`).join('\n');
+    const total = document.getElementById('total-price').textContent;
+    
+    const subject = 'botiga PBSitges';
+    const body = `Hola, m'agradaria reservar els següents productes:\n\nNom i Cognoms: ${name}\n\nProductes:\n${cartDetails}\n\nTotal: ${total}`;
+    
+    const mailtoLink = `mailto:pbadialorenz@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // Open email client
+    window.location.href = mailtoLink;
 
-    console.log('Simulant enviament de comanda...', { name, email, phone, cart });
+    console.log('Simulant enviament de comanda...', { name, cart });
 
     // Show Modal
     const modal = document.getElementById('success-modal');
