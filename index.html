@@ -104,12 +104,12 @@
                 <h3 class="text-3xl font-bold mb-8 text-fcb-blue">Finalitza la teva comanda</h3>
                 <!-- Hidden iframe for failsafe submission without redirect -->
                 <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-                <form id="order-form" action="https://formspree.io/f/mpqbnjgl" method="POST" target="hidden_iframe" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <form id="order-form" action="https://formspree.io/f/mpqbekob" method="POST" target="hidden_iframe" class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <input type="hidden" name="_next" value="https://peresitg.github.io/PenyaBarcelonistaSitges/">
-                    <input type="hidden" name="_subject" value="Nova reserva Botiga PB Sitges">
+                    <input type="hidden" id="form-subject" name="_subject" value="Nova reserva Botiga PB Sitges">
                     <div class="space-y-2">
                         <label class="block text-sm font-semibold text-gray-600">Nom i Cognoms *</label>
-                        <input type="text" id="nom" name="Nom" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-fcb-blue focus:ring-2 focus:ring-fcb-blue/20 outline-none transition-all" placeholder="El teu nom complet">
+                        <input type="text" id="nom" name="Nom" required class="w-full px-4 py-3 rounded-xl border-2 border-fcb-blue focus:ring-2 focus:ring-fcb-blue/20 outline-none transition-all bg-white" placeholder="El teu nom complet">
                     </div>
 
                     <div class="md:col-span-2 space-y-4 mt-4">

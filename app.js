@@ -202,6 +202,9 @@ document.getElementById('order-form').onsubmit = function(e) {
     const cartDetails = cart.map(item => `- ${item.name} (${item.qty} unitats)${item.size ? ', Talla: ' + item.size : ''}`).join('\n');
     const total = document.getElementById('total-price').textContent;
     
+    // Update subject with name
+    document.getElementById('form-subject').value = `Nova reserva Botiga PB Sitges - ${name}`;
+
     // Show loading state
     const submitBtn = e.target.querySelector('button[type="submit"]');
     const originalBtnText = submitBtn.innerHTML;
