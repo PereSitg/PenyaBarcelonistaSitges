@@ -259,6 +259,27 @@ document.getElementById('order-form').onsubmit = function(e) {
     e.target.submit();
 };
 
+// Copy to Clipboard Logic
+window.copyIBAN = function(iban) {
+    navigator.clipboard.writeText(iban).then(() => {
+        // Find the button that was clicked to show feedback
+        const btn = event.currentTarget;
+        const originalHtml = btn.innerHTML;
+        
+        btn.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+        `;
+        
+        setTimeout(() => {
+            btn.innerHTML = originalHtml;
+        }, 2000);
+    }).catch(err => {
+        console.error('Error al copiar: ', err);
+    });
+};
+
 // Modal Close
 document.getElementById('close-modal').onclick = function() {
     const modal = document.getElementById('success-modal');
